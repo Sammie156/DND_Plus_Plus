@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         colorSchemeSeed: Colors.green[200],
       ),
-      home: const HomePage(),
+      home: const HomePage(), // TODO: Have a centralized Home Page.
     );
   }
 }

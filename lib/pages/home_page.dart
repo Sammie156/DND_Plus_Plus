@@ -18,6 +18,8 @@ class HomePage extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
+              // Better and divided. Please. Hell to read this shit and
+              // understand it.
               ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green[200],
@@ -32,6 +34,7 @@ class HomePage extends StatelessWidget {
                 icon: Icon(appIcon),
                 onPressed: () {
                   Navigator.push(
+                    // TODO: Better way to navigate through pages.
                     context,
                     MaterialPageRoute(
                       builder: (context) => ApplicationsPage(),
@@ -42,6 +45,7 @@ class HomePage extends StatelessWidget {
               const SizedBox(width: 5),
               ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
+                  // TODO: Better buttons... Please!!
                   backgroundColor: Colors.green[200],
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
@@ -52,6 +56,7 @@ class HomePage extends StatelessWidget {
                 icon: Icon(notifIcon, color: Colors.grey[900]),
                 onPressed: () {
                   Navigator.push(
+                    // TODO: Better way to navigate through pages.
                     context,
                     MaterialPageRoute(
                       builder: (context) => NotificationsPage(),
@@ -67,23 +72,12 @@ class HomePage extends StatelessWidget {
         title: Text(
           "Home Page",
           style: TextStyle(
-            color: Colors.amber[200],
+            color: Colors.amber[200], // Better looks maybe!
           ),
         ),
         backgroundColor: const Color.fromARGB(255, 31, 30, 30),
       ),
       backgroundColor: Colors.blueGrey[800],
-    );
-  }
-}
-
-class SecondPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Something else"),
-      ),
     );
   }
 }

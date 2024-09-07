@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ApplicationsPage extends StatelessWidget {
+  // TODO: Check the applications installed and list them out
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

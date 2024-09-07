@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 /// Notification Page for seeing the captured notifications
 class NotificationsPage extends StatelessWidget {
+  // TODO: Capture notifications and display them here.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
