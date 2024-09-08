@@ -2,82 +2,92 @@ import 'package:dnd_plus_plus/pages/applications_page.dart';
 import 'package:dnd_plus_plus/pages/notifications_page.dart';
 import 'package:flutter/material.dart';
 
-/// Home Page of the DND++
-///
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  final IconData appIcon = Icons.arrow_outward;
-  final IconData notifIcon = Icons.notifications;
+  HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // TODO: implement build
     return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // Better and divided. Please. Hell to read this shit and
-              // understand it.
-              ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green[200],
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                label: Text("Show Apps",
-                    style: TextStyle(
-                      color: Colors.green[900],
-                    )),
-                icon: Icon(appIcon),
-                onPressed: () {
-                  Navigator.push(
-                    // TODO: Better way to navigate through pages.
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ApplicationsPage(),
-                    ),
-                  );
-                },
-              ),
-              const SizedBox(width: 5),
-              ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(
-                  // TODO: Better buttons... Please!!
-                  backgroundColor: Colors.green[200],
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                label: Text("Show Notifications",
-                    style: TextStyle(color: Colors.grey[900])),
-                icon: Icon(notifIcon, color: Colors.grey[900]),
-                onPressed: () {
-                  Navigator.push(
-                    // TODO: Better way to navigate through pages.
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => NotificationsPage(),
-                    ),
-                  );
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
       appBar: AppBar(
-        title: Text(
-          "Home Page",
-          style: TextStyle(
-            color: Colors.amber[200], // Better looks maybe!
+        backgroundColor: Colors.blueGrey[800],
+        title: Center(
+          child: Text(
+            "Home Page",
+            style: TextStyle(
+              color: Colors.amber[200],
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
-        backgroundColor: const Color.fromARGB(255, 31, 30, 30),
       ),
-      backgroundColor: Colors.blueGrey[800],
+      body: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton.icon(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Theme.of(context).colorScheme.onPrimary,
+              ),
+              icon:
+                  const Icon(Icons.settings_applications, color: Colors.black),
+              label: const Text(
+                "Applications Page",
+                style: TextStyle(color: Colors.black),
+              ),
+              onPressed: () {
+                Navigator.of(context).push(_createRoute(ApplicationsPage()));
+              },
+            ),
+            const SizedBox(
+              width: 10.0,
+            ),
+            ElevatedButton.icon(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Theme.of(context).colorScheme.onPrimary,
+              ),
+              icon: const Icon(
+                Icons.notifications_active,
+                color: Colors.black,
+              ),
+              label: const Text(
+                "Check notifications",
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+              onPressed: () {
+                Navigator.of(context).push(
+                  _createRoute(NotificationsPage()),
+                );
+              },
+            )
+          ],
+        ),
+      ),
+      backgroundColor: const Color.fromARGB(255, 31, 30, 30),
     );
   }
+}
+
+/// Creates Animations
+Route _createRoute(Widget page) {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => page,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+
+      var curve = Curves.ease;
+      var curveTween = CurveTween(curve: curve);
+
+      final tween = Tween(begin: begin, end: end).chain(curveTween);
+      final offsetAnimation = animation.drive(tween);
+
+      return SlideTransition(
+        position: offsetAnimation,
+        child: child,
+      );
+    },
+  );
 }

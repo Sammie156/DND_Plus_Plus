@@ -19,9 +19,9 @@ class NotificationsPage extends StatelessWidget {
             color: Colors.amber[200],
           ),
         ),
-        backgroundColor: const Color.fromARGB(255, 31, 30, 30),
+        backgroundColor: Colors.blueGrey[800],
       ),
-      backgroundColor: Colors.blueGrey[800],
+      backgroundColor: const Color.fromARGB(255, 31, 30, 30),
     );
   }
 }
